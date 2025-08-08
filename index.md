@@ -38,9 +38,9 @@ Critical Thinking • Multitasking • Time Management • Teamwork • Leadersh
 **Application Development Intern** — Softflew Training Institute  
 📅 *November 2024 – May 2025*  
 
-- Developed a **full-featured eCommerce mobile app** with separate modules for **Customers** and **Owners**.  
+- Developed a **full-featured eCommerce mobile app** with separate modules for **Customers** and **Owners/Admins**.  
 - Integrated RESTful APIs in Flutter (http, Dio) with **99% crash-free sessions**.  
-- Enhanced app security via **API best practices**, input validation, and optimized local storage using **Hive** and **SQLite**.  
+- Enhanced app security via **API best practices**, input validation, and optimized local storage.  
 - Built an **admin analytics panel** with interactive charts for users, orders, and sales data.  
 - Secured backend logic with **Firebase Cloud Functions** and implemented **role-based access control**.  
 
@@ -48,12 +48,26 @@ Critical Thinking • Multitasking • Time Management • Teamwork • Leadersh
 
 ## 📂 Projects
 
-### **E-Commerce Mobile Application** *(Dec 2024 – Jan 2025)*  
-- Built a scalable **cross-platform** app using **Flutter + GetX**.  
-- Integrated **Firebase Authentication, Firestore, and Storage** for secure login, real-time sync, and product uploads.  
-- Features: Product listing, catalog, cart, order tracking, **Razorpay** payments.  
-- Added offline support with **GetStorage** caching.  
-🔗 [View on GitHub](https://github.com/waseyjamal/ecommerce-app)  
+### **E-Commerce Mobile Application (Two Modules: Customer & Admin)** *(Dec 2024 – Jan 2025)*  
+A scalable **cross-platform** mobile shopping platform built with **two dedicated modules**:  
+1. **Customer App** — For shopping, payments, and order tracking.  
+2. **Owner/Admin App** — For managing products, orders, and analytics.  
+
+**Customer App**  
+- Product listing, catalog, cart, and order tracking.  
+- Secure login with Firebase Authentication.  
+- Real-time data sync with Firestore.  
+- Integrated online payments via Razorpay.  
+🔗 [View Customer App on GitHub](https://github.com/waseyjamal/cartify-customer)  
+
+**Owner/Admin App**  
+- Role-based access control for product & order management.  
+- Interactive analytics dashboard with charts for sales & orders.  
+- Offline support with GetStorage caching.  
+- Secure backend logic using Firebase Cloud Functions.  
+🔗 [View Owner App on GitHub](https://github.com/waseyjamal/cartify-admin)  
+
+**Tech Stack:** Flutter, GetX, Firebase (Auth, Firestore, Storage, Cloud Functions), Razorpay
 
 ---
 
