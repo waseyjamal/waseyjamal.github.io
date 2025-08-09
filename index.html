@@ -1,395 +1,181 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Wasey Jamal — Flutter Developer</title>
-  <meta name="description" content="Wasey Jamal — Flutter Developer | Flutter, Firebase, Node.js | Open to relocation" />
-  <link rel="shortcut icon" href="data:;base64,iVBORw0KGgo=">
-
-  <!-- Font (Google Poppins) & FontAwesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    :root{
-      --bg:#071226;
-      --card:#0d1722;
-      --muted:#9fb0c7;
-      --text:#e8f2fb;
-      --accent1:#7c3aed;
-      --accent2:#06b6d4;
-      --glass: rgba(255,255,255,0.03);
-      --radius:14px;
-      --maxw:1100px;
-      --shadow: 0 10px 30px rgba(2,6,23,0.6);
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wasey Jamal | Flutter Developer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0; padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+        transition: background-color 0.3s, color 0.3s;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-      background: linear-gradient(180deg,var(--bg), #04101b);
-      color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.5;
+    header {
+        background: linear-gradient(90deg, #2c3e50, #34495e);
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        position: relative;
     }
-    a{color:inherit}
-    .wrap{max-width:var(--maxw);margin:28px auto;padding:20px;}
-
-    /* HERO */
-    .hero{
-      display:flex;gap:20px;align-items:center;padding:26px;border-radius:var(--radius);
-      background: linear-gradient(90deg, rgba(124,58,237,0.08), rgba(6,182,212,0.06));
-      box-shadow: var(--shadow);border:1px solid rgba(255,255,255,0.02);
+    header h1 { margin: 0; font-size: 2.5rem; }
+    header p { margin: 0.5rem 0 0; font-size: 1.2rem; }
+    #theme-toggle {
+        position: absolute;
+        top: 20px; right: 20px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
     }
-    .avatar{
-      width:112px;height:112px;border-radius:16px;background: linear-gradient(135deg,var(--accent1),var(--accent2));
-      display:flex;align-items:center;justify-content:center;font-weight:700;font-size:30px;color:white;flex-shrink:0;
-      box-shadow:0 8px 22px rgba(124,58,237,0.14);
+    section { max-width: 1000px; margin: auto; padding: 2rem; }
+    h2 { color: #2c3e50; border-bottom: 2px solid #ddd; padding-bottom: 0.5rem; }
+    .skills span {
+        background: #3498db; color: white; padding: 6px 12px;
+        border-radius: 5px; margin: 5px; display: inline-block;
     }
-    .hero .info h1{margin:0;font-size:28px;letter-spacing:0.2px}
-    .tagline{margin-top:8px;color:var(--muted);font-size:15px;min-height:22px}
-    .hero-controls{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:var(--text);background:transparent;font-weight:600}
-    .btn.primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));border:0;box-shadow:0 8px 24px rgba(124,58,237,0.12)}
-    .btn.ghost{background:transparent}
-    .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:var(--glass);font-size:13px;color:#cfe9ff}
+    .project, .experience, .education {
+        background: white; padding: 1rem; margin-bottom: 1.5rem;
+        border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .btn {
+        background: #27ae60; color: white; padding: 8px 12px;
+        text-decoration: none; border-radius: 5px;
+        display: inline-block; margin-top: 10px;
+    }
+    .btn:hover { background: #219150; }
+    .placeholder {
+        background: #ecf0f1; height: 180px; border-radius: 8px;
+        margin-bottom: 10px; display: flex; align-items: center;
+        justify-content: center; color: #7f8c8d; font-size: 0.9rem; font-style: italic;
+    }
+    footer {
+        background: #2c3e50; color: white; text-align: center;
+        padding: 1rem; margin-top: 2rem;
+    }
+    a { color: #2980b9; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    /* Grid layout */
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:20px}
-    @media (max-width:980px){.grid{grid-template-columns:1fr} .hero{flex-direction:row} .avatar{width:86px;height:86px}}
-
-    /* card style */
-    .card{background:linear-gradient(180deg,var(--card), rgba(6,12,18,0.4)); padding:18px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.02)}
-    h2{margin:0 0 12px 0;color:#eaf6ff}
-
-    /* Skills grid */
-    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
-    .skill-card{display:flex;gap:12px;align-items:center;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02);transition:transform .18s ease,box-shadow .18s}
-    .skill-card:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(2,6,23,0.45)}
-    .skill-icon{width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;color:white}
-    .skill-title{font-weight:600;color:#dff5ff;font-size:14px}
-    .skill-sub{color:var(--muted);font-size:13px}
-
-    /* Projects */
-    .projects{display:grid;grid-template-columns:1fr;gap:14px}
-    @media(min-width:880px){ .projects{grid-template-columns:1fr 1fr} }
-    .project-card{display:flex;flex-direction:column;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);transition:transform .18s ease}
-    .project-card:hover{transform:translateY(-8px)}
-    .proj-thumb{height:140px;border-radius:10px;background:linear-gradient(180deg,#061021,#071428);display:flex;align-items:center;justify-content:center;color:var(--muted);font-style:italic}
-    .proj-title{margin:10px 0 6px 0;font-size:16px;font-weight:700}
-    .proj-desc{color:var(--muted);font-size:14px;margin:0}
-    .tech-badges{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
-    .badge{font-size:13px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);color:#dff5ff}
-
-    /* Experience/Education timeline */
-    .timeline{display:flex;flex-direction:column;gap:12px}
-    .timeline-item{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
-    .muted{color:var(--muted);font-size:13px}
-
-    /* Contact card */
-    .contact-grid{display:flex;flex-direction:column;gap:10px}
-    .contact-btn{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02);text-decoration:none;color:var(--text)}
-    .contact-btn:hover{transform:translateY(-4px)}
-
-    /* Form */
-    .form-row{display:flex;gap:10px}
-    .form-row .field{flex:1}
-    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background:rgba(255,255,255,0.01);color:var(--text);resize:vertical}
-    textarea{min-height:110px}
-
-    /* small animation utility */
-    .fade-up{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease}
-    .in-view{opacity:1;transform:translateY(0)}
-
-    footer{text-align:center;color:var(--muted);margin-top:24px;font-size:13px;padding-bottom:30px}
-  </style>
+    /* Dark theme styles */
+    body.dark {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+    body.dark header {
+        background: linear-gradient(90deg, #1a1a1a, #333);
+    }
+    body.dark h2 {
+        color: #ddd;
+        border-bottom-color: #555;
+    }
+    body.dark .skills span {
+        background: #555;
+    }
+    body.dark .project, body.dark .experience, body.dark .education {
+        background: #1e1e1e;
+        box-shadow: 0 2px 6px rgba(255,255,255,0.05);
+    }
+    body.dark footer {
+        background: #1a1a1a;
+    }
+</style>
 </head>
 <body>
-  <div class="wrap">
 
-    <!-- HERO -->
-    <header class="hero" role="banner">
-      <div class="avatar" aria-hidden="true">WJ</div>
+<header>
+    <h1>Wasey Jamal</h1>
+    <p>Flutter & Mobile App Developer | Open to Global Opportunities</p>
+    <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+</header>
 
-      <div class="info" style="flex:1">
-        <h1>Wasey Jamal</h1>
-        <div class="tagline" id="typing" aria-live="polite"></div>
-        <div style="margin-top:10px">
-          <span class="chip"><i class="fa-solid fa-location-dot"></i>&nbsp;Lucknow, India</span>
-          <span class="chip"><i class="fa-solid fa-briefcase"></i>&nbsp;Open to Global Opportunities</span>
-        </div>
-      </div>
+<section>
+    <h2>About Me</h2>
+    <p>Enthusiastic Computer Science Engineering student with hands-on experience in mobile and web application development. Skilled in Flutter, Firebase, Node.js, and MongoDB. Passionate about building efficient, scalable, and secure apps. Actively seeking global opportunities to contribute and grow.</p>
+</section>
 
-      <div class="hero-controls">
-        <a class="btn primary" href="/Resume_Wasey_Jamal.pdf" download><i class="fa-solid fa-download"></i> Download Resume</a>
-        <a class="btn" href="#contact"><i class="fa-regular fa-envelope"></i> Contact Me</a>
-      </div>
-    </header>
-
-    <!-- GRID -->
-    <div class="grid" style="margin-top:20px">
-
-      <!-- LEFT column -->
-      <main>
-        <!-- ABOUT -->
-        <section class="card fade-up">
-          <h2>About</h2>
-          <p class="muted" style="margin-top:8px">
-            Enthusiastic Computer Science Engineering student with hands-on experience in building production-ready cross-platform mobile apps using Flutter. I integrate Firebase for authentication & realtime data, implement secure payment flows with Razorpay, and build stable REST API integrations using Node.js. I focus on clean architecture, performance and user experience.
-          </p>
-          <p style="margin-top:8px"><strong>Highlights:</strong> Built a two-module e-commerce platform (Customer & Owner apps). Integrated payments and admin analytics during internship.</p>
-        </section>
-
-        <!-- SKILLS -->
-        <section class="card fade-up" style="margin-top:16px">
-          <h2>Skills</h2>
-          <div class="skills-grid" style="margin-top:12px">
-            <!-- Use simple icons (FA) + label - these are recognizable -->
-            <div class="skill-card">
-              <div class="skill-icon" style="background:linear-gradient(135deg,#35baf6,#0b78ff)"><i class="fa-brands fa-google"></i></div>
-              <div>
-                <div class="skill-title">Flutter</div>
-                <div class="skill-sub">Cross-platform UI</div>
-              </div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-icon" style="background:linear-gradient(135deg,#06b6d4,#0ea5a4)"><i class="fa-solid fa-code"></i></div>
-              <div>
-                <div class="skill-title">Dart</div>
-                <div class="skill-sub">Language for Flutter</div>
-              </div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-icon" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)"><i class="fa-solid fa-layer-group"></i></div>
-              <div>
-                <div class="skill-title">GetX</div>
-                <div class="skill-sub">State Management</div>
-              </div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-icon" style="background:linear-gradient(135deg,#ffcb2b,#ff8a00)"><i class="fa-solid fa-fire"></i></div>
-              <div>
-                <div class="skill-title">Firebase</div>
-                <div class="skill-sub">Auth, Firestore, Storage</div>
-              </div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-icon" style="background:linear-gradient(135deg,#3c873a,#2f8a4a)"><i class="fa-brands fa-node-js"></i></div>
-              <div>
-                <div class="skill-title">Node.js</div>
-                <div class="skill-sub">Express & APIs</div>
-              </div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-icon" style="background:linear-gradient(135deg,#2e7b6d,#2db07c)"><i class="fa-solid fa-database"></i></div>
-              <div>
-                <div class="skill-title">MongoDB</div>
-                <div class="skill-sub">NoSQL Database</div>
-              </div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-icon" style="background:linear-gradient(135deg,#4b5563,#6b7280)"><i class="fa-solid fa-network-wired"></i></div>
-              <div>
-                <div class="skill-title">REST APIs</div>
-                <div class="skill-sub">HTTP / JSON</div>
-              </div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-icon" style="background:linear-gradient(135deg,#059669,#10b981)"><i class="fa-solid fa-credit-card"></i></div>
-              <div>
-                <div class="skill-title">Razorpay</div>
-                <div class="skill-sub">Payment Integration</div>
-              </div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-icon" style="background:linear-gradient(135deg,#2d6cdf,#4f8dff)"><i class="fa-brands fa-github"></i></div>
-              <div>
-                <div class="skill-title">Git & GitHub</div>
-                <div class="skill-sub">Version control</div>
-              </div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-icon" style="background:linear-gradient(135deg,#f97316,#f59e0b)"><i class="fa-solid fa-terminal"></i></div>
-              <div>
-                <div class="skill-title">Postman</div>
-                <div class="skill-sub">API testing</div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- PROJECTS -->
-        <section class="card fade-up" style="margin-top:16px">
-          <h2>Projects</h2>
-          <div class="projects" style="margin-top:12px">
-
-            <div class="project-card">
-              <div class="proj-thumb">Screenshots coming soon</div>
-              <div style="margin-top:10px">
-                <div class="proj-title">E-Commerce Mobile Application <span class="muted" style="font-size:13px"> (Customer & Owner/Admin)</span></div>
-                <div class="proj-desc muted">A scalable cross-platform shopping platform built in Flutter with separate apps for customers and store owners. Features real-time sync, secure payments and admin analytics.</div>
-                <div class="tech-badges">
-                  <span class="badge">Flutter</span><span class="badge">GetX</span><span class="badge">Firebase</span><span class="badge">Razorpay</span><span class="badge">Node.js</span>
-                </div>
-                <div class="btn-row" style="margin-top:12px">
-                  <a class="btn" href="https://github.com/waseyjamal/cartify-customer" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Customer App</a>
-                  <a class="btn" href="https://github.com/waseyjamal/cartify-admin" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Owner/Admin App</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- You can add more project-cards using same structure -->
-          </div>
-        </section>
-
-        <!-- EXPERIENCE -->
-        <section class="card fade-up" style="margin-top:16px">
-          <h2>Experience</h2>
-          <div class="timeline" style="margin-top:12px">
-            <div class="timeline-item">
-              <div style="display:flex;justify-content:space-between;align-items:center">
-                <div>
-                  <h3 style="margin:0;font-size:15px">Application Development Intern — Softflew Training Institute</h3>
-                  <div class="muted">Nov 2024 – May 2025</div>
-                </div>
-                <div class="muted" style="font-size:13px">Remote</div>
-              </div>
-              <ul style="margin-top:10px;color:var(--muted)">
-                <li>Built a full-featured eCommerce platform (Customer & Owner) using Flutter & GetX.</li>
-                <li>Integrated RESTful APIs (http & Dio) with 99% crash-free sessions.</li>
-                <li>Implemented secure payments (Razorpay) & offline caching via GetStorage.</li>
-                <li>Created admin analytics panel and secured backend with Firebase Cloud Functions and role based access.</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- EDUCATION -->
-        <section class="card fade-up" style="margin-top:16px">
-          <h2>Education</h2>
-          <div class="timeline" style="margin-top:12px">
-            <div class="timeline-item">
-              <h3 style="margin:0;font-size:15px">B.Tech — Computer Science Engineering</h3>
-              <div class="muted">Dr. A. P. J. Abdul Kalam Technical University, Lucknow — Expected 2025</div>
-            </div>
-            <div style="height:10px"></div>
-            <div class="timeline-item">
-              <h3 style="margin:0;font-size:15px">Intermediate & High School</h3>
-              <div class="muted">Ziauddin Khan Memorial Senior Secondary School, Azamgarh</div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <!-- RIGHT column -->
-      <aside>
-        <div class="side-section">
-
-          <div class="card fade-up">
-            <h2>Contact</h2>
-            <div class="contact-grid" style="margin-top:8px">
-              <a class="contact-btn" href="mailto:waseyjamal000@gmail.com"><i class="fa-regular fa-envelope"></i> Email</a>
-              <a class="contact-btn" href="https://www.linkedin.com/in/wasey-jamal-472996253" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-              <a class="contact-btn" href="https://github.com/waseyjamal" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-            </div>
-          </div>
-
-          <div class="card fade-up">
-            <h2>Quick Profile</h2>
-            <p class="muted" style="margin-top:8px">Flutter developer experienced in building scalable apps with Firebase & Node.js. Comfortable working in teams and delivering end-to-end app features.</p>
-          </div>
-
-          <div class="card fade-up">
-            <h2>Message me</h2>
-            <!-- simple contact form that opens mail client -->
-            <form id="contactForm" onsubmit="handleForm(event)">
-              <div class="form-row">
-                <input class="field" type="text" id="name" name="name" placeholder="Your name" required>
-              </div>
-              <div class="form-row" style="margin-top:8px">
-                <input class="field" type="email" id="email" name="email" placeholder="Your email" required>
-              </div>
-              <div style="margin-top:8px">
-                <textarea id="message" name="message" placeholder="Write a short message..." required></textarea>
-              </div>
-              <div style="margin-top:10px;display:flex;gap:8px">
-                <button class="btn primary" type="submit"><i class="fa-regular fa-paper-plane"></i> Send</button>
-                <button class="btn" type="button" onclick="resetForm()">Clear</button>
-              </div>
-              <p id="formNote" class="muted" style="margin-top:8px;font-size:13px">This form opens your email client to send a message (no backend required).</p>
-            </form>
-          </div>
-
-          <div class="card fade-up">
-            <h2>Languages & Skills</h2>
-            <p class="muted" style="margin-top:8px">Hindi (Fluent) • English (Fluent)</p>
-            <h3 style="margin-top:12px;font-size:15px">Soft Skills</h3>
-            <p class="muted" style="margin-top:8px">Critical Thinking • Time Management • Teamwork • Leadership • Adaptability</p>
-          </div>
-
-        </div>
-      </aside>
+<section>
+    <h2>Skills</h2>
+    <div class="skills">
+        <span>Flutter</span><span>Dart</span><span>GetX</span>
+        <span>Firebase</span><span>Node.js</span><span>MongoDB</span>
+        <span>REST APIs</span><span>Razorpay</span><span>JavaScript</span>
     </div>
+</section>
 
-    <footer>
-      <p>Made with ♥ • <strong>Wasey Jamal</strong> • © 2025</p>
-    </footer>
-  </div>
+<section>
+    <h2>Projects</h2>
+    <div class="project">
+        <div class="placeholder">Screenshot coming soon</div>
+        <h3>E-Commerce Mobile Application (Two Modules)</h3>
+        <p>A scalable cross-platform shopping platform with two dedicated apps: Customer and Owner/Admin.</p>
+        <ul>
+            <li><b>Customer App:</b> Product listing, cart, order tracking, payments.</li>
+            <li><b>Owner/Admin App:</b> Product & order management, analytics dashboard.</li>
+        </ul>
+        <a class="btn" href="https://github.com/waseyjamal/cartify-customer" target="_blank">Customer App</a>
+        <a class="btn" href="https://github.com/waseyjamal/cartify-admin" target="_blank">Owner App</a>
+    </div>
+</section>
 
-  <script>
-    // Typing tagline
-    (function(){
-      const el = document.getElementById('typing');
-      const texts = [
-        "Building Scalable Mobile Apps with Flutter, Firebase & Node.js",
-        "Flutter Developer • E-commerce, Payments, Realtime Apps",
-        "Open to Remote & Relocation Opportunities (Canada, UAE, Germany)"
-      ];
-      let t=0,i=0;
-      function type(){
-        const txt = texts[t];
-        el.textContent = txt.slice(0,++i);
-        if(i===txt.length){ setTimeout(()=>{ erase(); },1400); return; }
-        setTimeout(type,25);
-      }
-      function erase(){
-        el.textContent = '';
-        i=0; t=(t+1)%texts.length;
-        setTimeout(type,300);
-      }
-      type();
-    })();
+<section>
+    <h2>Experience</h2>
+    <div class="experience">
+        <h3>Flutter Developer Intern - Tare Zameen Foundation</h3>
+        <p><i>Remote | Jan 2024 – Mar 2024</i></p>
+        <ul>
+            <li>Developed mobile application features using Flutter and Firebase.</li>
+            <li>Collaborated with team members to design and implement user-friendly interfaces.</li>
+            <li>Integrated APIs for dynamic data handling.</li>
+        </ul>
+    </div>
+</section>
 
-    // Fade-up on scroll
-    (function(){
-      const obs = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting) e.target.classList.add('in-view');
-        });
-      },{threshold:0.12});
-      document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
-    })();
+<section>
+    <h2>Education</h2>
+    <div class="education">
+        <h3>Bachelor of Technology in Computer Science Engineering</h3>
+        <p>Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow, India</p>
+        <p><i>Expected Graduation: 2025</i></p>
+    </div>
+</section>
 
-    // Contact form -> opens mail client with prefilled content
-    function handleForm(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      const subject = encodeURIComponent('Portfolio contact from ' + name);
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-      window.location.href = `mailto:waseyjamal000@gmail.com?subject=${subject}&body=${body}`;
+<section>
+    <h2>Contact</h2>
+    <p>📧 Email: <a href="mailto:waseyjamal000@gmail.com">waseyjamal000@gmail.com</a></p>
+    <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/wasey-jamal-472996253" target="_blank">linkedin.com/in/wasey-jamal</a></p>
+    <p>💻 GitHub: <a href="https://github.com/waseyjamal" target="_blank">github.com/waseyjamal</a></p>
+</section>
+
+<footer>
+    <p>&copy; 2025 Wasey Jamal</p>
+</footer>
+
+<script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+    const icon = toggleBtn.querySelector('i');
+
+    // Load saved theme
+    if(localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark');
+        icon.classList.replace('fa-moon', 'fa-sun');
     }
-    function resetForm(){ document.getElementById('contactForm').reset(); }
-  </script>
+
+    toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        let theme = 'light';
+        if(body.classList.contains('dark')) {
+            theme = 'dark';
+            icon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            icon.classList.replace('fa-sun', 'fa-moon');
+        }
+        localStorage.setItem('theme', theme);
+    });
+</script>
+
 </body>
 </html>
